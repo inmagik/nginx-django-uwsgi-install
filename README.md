@@ -82,7 +82,7 @@ chmod -R www-data .
 Templates are included for the various config files. 
 They use Jinja template syntax, the following variables are required:
 
-* `SERVER_APP_NAME`: app name (nginx)
+* `SERVER_APP_NAME`: app name (nginx, supervisor)
 * `SERVER_APP_SOCKET_PATH`: path to socket for nginx <-> uwsgi communication (nginx, uwsgi)
 * `SERVER_APP_SOCKET_PORT`: socket port to use for nginx <-> uwsgi communication (nginx, uwsgi, optional if `SERVER_APP_SOCKET_PATH` is not used)
 * `SERVER_APP_DOMAIN`: app domain or ip to be served on (nginx)
