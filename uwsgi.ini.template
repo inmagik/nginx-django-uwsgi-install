@@ -1,0 +1,28 @@
+[uwsgi]
+
+# Django-related settings
+# the base directory (full path where django's manage.py is located)
+chdir           = {{ SERVER_APP_BASE_FOLDER}}   #EXAMPLE: /var/opt/impianti_termici/impianti_termici/
+# Django's wsgi file
+module          =  {{ SERVER_APP_NAME}}.wsgi:application #EXAMPLE: impianti_termici
+# the virtualenv (full path)
+home            = {{ SERVER_APP_VENV_PATH }} #EXAMPLE: /var/opt/impianti_termici/env/
+
+# PROCESS RELATED SETTINGS
+
+# master
+master          = true
+
+# maximum number of worker processes
+processes       = 10
+
+# the socket (use the full path to be safe)
+socket          = {{ SERVER_APP_SOCKET_PATH }} #EXAMPLE: /var/opt/impianti_termici/mysite.sock
+
+# ... with appropriate permissions - may be needed
+chmod-socket    = 664
+uid = {{ SERVER_APP_SYSTEM_USER }} #EXAMPLE: www-data
+gid = {{ SERVER_APP_SYSTEM_USER }} #EXAMPLE: www-data
+
+# clear environment on exit
+vacuum          = true
