@@ -5,9 +5,12 @@ This installation is meant to be used in an Ubuntu machine
 
 # Server environment
 
-## updating repos
+## updating repos and installing git
 ```
 sudo apt-get update
+sudo apt-get install git
+sudo apt-get install libpcre3 libpcre3-dev
+
 ```
 
 ## virtualenv
@@ -104,10 +107,17 @@ A sample uwsgi config for a django project is included in `uwsgi.ini.template`
 ## nginx config
 A sample nginx config for a django project is included in `nginx.conf.template`
 
+`sudo ln -s /var/opt/ross-server/nginx/nginx.conf /etc/nginx/sites-enabled/ross-server.conf`
+
 ## supervisor config
 Supervisor will be configured to:
 * monitor nginx
 * monitor uwsgi process
+
+```
+sudo ln nginx/supervisor.conf /etc/supervisor/conf.d/ross-server.conf
+sudo supervisorctl reread
+```
 
 ## bonus: postgresql
 ### installing
