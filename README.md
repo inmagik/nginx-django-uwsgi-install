@@ -52,12 +52,27 @@ pip install uwsgi
 ## create virtual environment
 Environment will be located inside the server app repo
 
+## config templates variables
+Templates are included for the various config files. 
+They use Jinja template syntax, the following variables are required:
+
+
+* `SERVER_APP_NAME`
+* `SERVER_APP_SOCKET_PATH`
+* `SERVER_APP_SOCKET_PORT`
+* `SERVER_APP_DOMAIN`
+* `SERVER_APP_MEDIA_FOLDER`
+* `SERVER_APP_STATIC_FOLDER`
+* `SERVER_APP_WSGI_PARAMS_PATH`
+
+
+
 ## uwsgi config
-A sample uwsgi config for a django project is included
-Create symlink
+A sample uwsgi config for a django project is included in `uwsgi.ini.template` 
+
 
 ## nginx config
-A sample nginx config for a django project is included
+A sample nginx config for a django project is included in `nginx.conf.template`
 
 ## supervisor config
 Supervisor will be configured to:
