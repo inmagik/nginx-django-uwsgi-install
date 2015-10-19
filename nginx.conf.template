@@ -1,9 +1,9 @@
 # mysite_nginx.conf
 
 # the upstream component nginx needs to connect to
-upstream impianti_termici {
-    server unix:///var/opt/impianti_termici/mysite.sock; # for a file socket
-    #server 127.0.0.1:8001; # for a web port socket (we'll use this first)
+upstream {{ SERVER_APP_NAME }} {
+    server unix://{{ SERVER_APP_SOCKET_PATH }}; # for a file socket
+    #server {{ SERVER_APP_SOCKET_PORT }}; # for a web port socket
 }
 
 # configuration of the server
@@ -11,7 +11,7 @@ server {
     # the port your site will be served on
     listen      80 default_server;
     # the domain name it will serve for
-    server_name 95.85.37.22; # substitute your machine's IP address or FQDN
+    server_name {{ SERVER_APP_DOMAIN }}; # substitute your machine's IP address or FQDN
     charset     utf-8;
 
     # max upload size
@@ -19,24 +19,24 @@ server {
 
     # Django media
     #location /media  {
-    #    alias /path/to/your/mysite/media;  # your Django project's media files - amend as required
+    #    alias  {{ SERVER_APP_MEDIA_FOLDER };  # your Django project's media files
     #}
 
     location /static {
-        alias /var/opt/impianti_termici/statics; # your Django project's static files - amend as required
+        alias {{ SERVER_APP_STATIC_FOLDER }}; # your Django project's static files
     }
 
-    location /app {
-        alias /var/opt/impianti_termici_mobile/ImpiantiTermici/www;
-    }
-
-
+    # static apps. will be managed with included files
+    #location /app {
+    #    alias /var/opt/impianti_termici_mobile/ImpiantiTermici/www;
+    #}
 
     # Finally, send all non-media requests to the Django server.
     location / {
-        uwsgi_pass  impianti_termici;
-        include     /var/opt/impianti_termici/nginx/uwsgi_params; # the uwsgi_params file you installed
-	#add_header 'Access-Control-Allow-Origin' 'http://example.com,http://developers.example.com';
+        uwsgi_pass  {{ SERVER_APP_NAME }};
+        include     {{ SERVER_APP_WSGI_PARAMS_PATH }}; # the uwsgi_params file you installed
+	
+	# add_header 'Access-Control-Allow-Origin' 'http://example.com,http://developers.example.com';
         # add_header 'Access-Control-Allow-Credentials' 'true';
         # add_header 'Access-Control-Allow-Headers' 'Content-Type,Accept';
         # add_header 'Access-Control-Allow-Methods' 'GET, POST, OPTIONS, PUT, DELETE';
