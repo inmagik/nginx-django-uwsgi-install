@@ -69,13 +69,13 @@ source env/bin activate
 ## update requirements
 ```
 source env/bin activate
-pip install -r requirements
+pip install -r requirements.txt
 ```
 
 
 ## give ownership to webserver user
 ```
-chmod -r www-data .
+chmod -R www-data .
 ```
 
 ## config templates variables
