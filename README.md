@@ -5,9 +5,10 @@ This installation is meant to be used in an Ubuntu machine
 
 # Server environment
 
-## updating repos
+## updating repos and installing git
 ```
 sudo apt-get update
+sudo apt-get install git
 ```
 
 ## virtualenv
