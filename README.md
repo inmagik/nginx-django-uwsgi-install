@@ -1,4 +1,4 @@
-# nginx-django-wsgi-install
+# nginx-django-uwsgi-install
 Notes on installation of web stack. will become the base for some ansible playbooks
 
 This installation is meant to be used in an Ubuntu machine
