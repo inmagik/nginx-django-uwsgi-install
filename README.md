@@ -11,28 +11,58 @@ sudo apt-get update
 ```
 
 ## virtualenv
+```
+sudo apt-get install python-virtualenv
+sudo apt-get install python-pip
+```
+
+## python packages build dependencies
+```
+sudo apt-get install python-dev
+```
+
+
 ### installing 
 ```
 sudo apt-get install python-virtualenv 
 ```
 
 ## nginx
+
 ### installing
+```
+sudo apt-get install nginx
+```
 ### basic configuration
 
 ## supervisord
 ### installing
+```
+apt-get install supervisor
+```
 
 # uwsgi
 ## installing
+```
+pip install uwsgi
+```
 
-
-# App deployment
+# Server app deployment
 ## clone git repository
-## uwsgi config
-## nginx config
-## supervisor config
+## create virtual environment
+Environment will be located inside the server app repo
 
+## uwsgi config
+A sample uwsgi config for a django project is included
+Create symlink
+
+## nginx config
+A sample nginx config for a django project is included
+
+## supervisor config
+Supervisor will be configured to:
+* monitor nginx
+* monitor uwsgi process
 
 ## bonus: postgresql
 ### installing
