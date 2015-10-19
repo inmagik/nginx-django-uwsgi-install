@@ -1,0 +1,6 @@
+[program: {{SERVER_APP_NAME }} ]
+
+#this would help with env vars...
+#command = source /var/opt/impianti_termici/environment.sh && ...
+
+command = /usr/local/bin/uwsgi -i --env DJANGO_SETTINGS_MODULE={{SERVER_APP_NAME}}.settings {{ SERVER_APP_UWSGI_INI_PATH }}
