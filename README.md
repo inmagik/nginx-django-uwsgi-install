@@ -48,22 +48,51 @@ pip install uwsgi
 ```
 
 # Server app deployment
+The following layout conventions are expected:
+
+- virtualenv will be created into repo folder, so a corresponding entry in `.gitignore` file is recommended.
+- requirements.txt is located into repo folder and contains python requirements for the server app
+
 ## clone git repository
+```
+git clone your_repo_url
+```
+
 ## create virtual environment
 Environment will be located inside the server app repo
+```
+cd your_repo
+virtualenv --no-site-packages env
+source env/bin activate
+```
+
+## update requirements
+```
+source env/bin activate
+pip install -r requirements
+```
+
+
+## give ownership to webserver user
+```
+chmod -r www-data .
+```
 
 ## config templates variables
 Templates are included for the various config files. 
 They use Jinja template syntax, the following variables are required:
 
+* `SERVER_APP_NAME`: app name (nginx)
+* `SERVER_APP_SOCKET_PATH`: path to socket for nginx <-> uwsgi communication (nginx, uwsgi)
+* `SERVER_APP_SOCKET_PORT`: socket port to use for nginx <-> uwsgi communication (nginx, uwsgi, optional if `SERVER_APP_SOCKET_PATH` is not used)
+* `SERVER_APP_DOMAIN`: app domain or ip to be served on (nginx)
+* `SERVER_APP_MEDIA_FOLDER`: path do django media folder (ngix)
+* `SERVER_APP_STATIC_FOLDER`: path to django static folder (nginx)
+* `SERVER_APP_WSGI_PARAMS_PATH`:path to `uwsgi_params` file (nginx+uwsgi)
 
-* `SERVER_APP_NAME`
-* `SERVER_APP_SOCKET_PATH`
-* `SERVER_APP_SOCKET_PORT`
-* `SERVER_APP_DOMAIN`
-* `SERVER_APP_MEDIA_FOLDER`
-* `SERVER_APP_STATIC_FOLDER`
-* `SERVER_APP_WSGI_PARAMS_PATH`
+* `SERVER_APP_BASE_FOLDER`: base path of server app (uwsgi)
+* `SERVER_APP_SYSTEM_USER`: user the webserver runs on (uwsgi)
+* `SERVER_APP_VENV_PATH`: path to virtualenv (uwsgi)
 
 
 
