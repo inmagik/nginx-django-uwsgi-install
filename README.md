@@ -93,6 +93,7 @@ They use Jinja template syntax, the following variables are required:
 * `SERVER_APP_BASE_FOLDER`: base path of server app (uwsgi)
 * `SERVER_APP_SYSTEM_USER`: user the webserver runs on (uwsgi)
 * `SERVER_APP_VENV_PATH`: path to virtualenv (uwsgi)
+* `SERVER_APP_UWSGI_INI_PATH`: path to `uwsgi.ini` (supervisor)
 
 
 
