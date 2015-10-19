@@ -1,9 +1,9 @@
 # mysite_nginx.conf
 
 # the upstream component nginx needs to connect to
-upstream {{ SERVER_APP_NAME }} {
-    server unix://{{ SERVER_APP_SOCKET_PATH }}; # for a file socket
-    #server {{ SERVER_APP_SOCKET_PORT }}; # for a web port socket
+upstream {{ CFG.SERVER_APP_NAME }} {
+    server unix://{{ CFG.SERVER_APP_SOCKET_PATH }}; # for a file socket
+    #server {{ CFG.SERVER_APP_SOCKET_PORT }}; # for a web port socket
 }
 
 # configuration of the server
@@ -11,7 +11,7 @@ server {
     # the port your site will be served on
     listen      80 default_server;
     # the domain name it will serve for
-    server_name {{ SERVER_APP_DOMAIN }}; # substitute your machine's IP address or FQDN
+    server_name {{ CFG.SERVER_APP_DOMAIN }}; # substitute your machine's IP address or FQDN
     charset     utf-8;
 
     # max upload size
@@ -19,11 +19,11 @@ server {
 
     # Django media
     #location /media  {
-    #    alias  {{ SERVER_APP_MEDIA_FOLDER };  # your Django project's media files
+    #    alias  {{ CFG.SERVER_APP_MEDIA_FOLDER }};  # your Django project's media files
     #}
 
     location /static {
-        alias {{ SERVER_APP_STATIC_FOLDER }}; # your Django project's static files
+        alias {{ CFG.SERVER_APP_STATIC_FOLDER }}; # your Django project's static files
     }
 
     # static apps. will be managed with included files
@@ -33,8 +33,8 @@ server {
 
     # Finally, send all non-media requests to the Django server.
     location / {
-        uwsgi_pass  {{ SERVER_APP_NAME }};
-        include     {{ SERVER_APP_WSGI_PARAMS_PATH }}; # the uwsgi_params file you installed
+        uwsgi_pass  {{ CFG.SERVER_APP_NAME }};
+        include     {{ CFG.SERVER_APP_WSGI_PARAMS_PATH }}; # the uwsgi_params file you installed
 	
 	# add_header 'Access-Control-Allow-Origin' 'http://example.com,http://developers.example.com';
         # add_header 'Access-Control-Allow-Credentials' 'true';
