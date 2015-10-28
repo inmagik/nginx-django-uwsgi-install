@@ -121,7 +121,18 @@ sudo supervisorctl reread
 
 ## bonus: postgresql
 ### installing
-### enabling access from local machine
+```
+sudo apt-get install libpq-dev python-dev
+sudo apt-get install postgresql postgresql-contrib
+```
+### configuring and enabling access from local machine
+```
+sudo su - postgres
+createdb mydb
+createuser -P
+psql
+GRANT ALL PRIVILEGES ON DATABASE mydb TO myuser;
+```
 
 
 
