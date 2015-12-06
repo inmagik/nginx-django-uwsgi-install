@@ -78,7 +78,7 @@ pip install -r requirements.txt
 
 ## give ownership to webserver user
 ```
-chmod -R www-data .
+chown -R www-data .
 ```
 
 ## config templates variables
